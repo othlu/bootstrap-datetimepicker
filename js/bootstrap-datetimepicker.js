@@ -129,7 +129,7 @@
 		}
 
 		this.picker = $(DPGlobal.template)
-							.appendTo(this.isInline ? this.element : 'body')
+							.appendTo(this.isInline ? this.element : $(this.element).parent())
 							.on({
 								click: $.proxy(this.click, this),
 								mousedown: $.proxy(this.mousedown, this)
@@ -416,12 +416,12 @@
 				}
 			} else {
 				offset = this.element.offset();
-				left = offset.left;
+				left = 0;
 			}
 			if (this.pickerPosition == 'top-left' || this.pickerPosition == 'top-right') {
-				top = offset.top - this.picker.outerHeight();
+				top = this.picker.outerHeight();
 			} else {
-				top = offset.top + this.height;
+				top = this.height;
 			}
 			this.picker.css({
 				top: top,
